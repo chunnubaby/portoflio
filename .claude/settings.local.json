@@ -8,5 +8,21 @@
       "Skill(update-config:*)",
       "PowerShell(cd \"C:\\\\Users\\\\coolf\\\\OneDrive\\\\Documents\\\\claude\\\\portoflio\"; echo '{\"tool_name\":\"Edit\",\"tool_input\":{\"file_path\":\"index.html\"}}' | powershell -Command \"git add -A; if \\(git diff --cached --quiet\\) { exit 0 } else { git commit -m 'Auto-save'; git push }\" 2>&1)"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "cd 'C:\\Users\\coolf\\OneDrive\\Documents\\claude\\portoflio'; git add -A; if (-not (git diff --cached --quiet)) { git commit -m 'Auto-save'; git push }",
+            "statusMessage": "Pushing to GitHub...",
+            "async": true
+          }
+        ]
+      }
+    ]
   }
 }

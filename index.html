@@ -425,7 +425,7 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
     <button class="filter-btn" data-filter="off-duty">Off Duty</button>
   </div>
   <div class="work-grid" id="workGrid">
-    <div class="work-item col-8" data-cat="short-film" data-yt="t5iGEJOj8Rs">
+    <div class="work-item col-8" data-cat="short-film" data-vimeo="1199120799">
       <div class="work-thumb-ph" style="background:#080d1c"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       <div class="work-overlay"><div><div class="work-info-cat">Short Film</div><div class="work-info-title">ALEXA</div></div></div>
     </div>
@@ -437,9 +437,9 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
       <div class="work-thumb-ph" style="background:#0d1220"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       <div class="work-overlay"><div><div class="work-info-cat">Short Film</div><div class="work-info-title">ART OF BROKEN HEARTS</div></div></div>
     </div>
-    <div class="work-item col-6" data-cat="cinematic" data-ig="https://www.instagram.com/p/DP_5AjZjqq3/">
+    <div class="work-item col-6" data-cat="cinematic" data-vimeo="1199120837">
       <div class="work-thumb-ph" style="background:#1a1008"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-      <div class="work-overlay"><div><div class="work-info-cat">Cinematic Recreation</div><div class="work-info-title">A SCENE FROM MEET JOE BLACK</div><a class="work-ext-link" href="https://www.instagram.com/p/DP_5AjZjqq3/" target="_blank" onclick="event.stopPropagation()">View ↗</a></div></div>
+      <div class="work-overlay"><div><div class="work-info-cat">Cinematic Recreation</div><div class="work-info-title">A SCENE FROM MEET JOE BLACK</div></div></div>
     </div>
     <div class="work-item col-4" data-cat="cinematic">
       <div class="work-thumb-ph" style="background:#0f1510"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
@@ -481,7 +481,7 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
       <div class="work-thumb-ph" style="background:#16080e"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       <div class="work-overlay"><div><div class="work-info-cat">Event</div><div class="work-info-title">DJ YSL</div></div></div>
     </div>
-    <div class="work-item col-12" data-cat="event">
+    <div class="work-item col-12" data-cat="event" data-vimeo="1199120815">
       <div class="work-thumb-ph" style="background:#080e18"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       <div class="work-overlay"><div><div class="work-info-cat">Event</div><div class="work-info-title">CARIBANA</div></div></div>
     </div>
@@ -509,10 +509,11 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
       <div class="work-thumb-ph" style="background:#18120a"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       <div class="work-overlay"><div><div class="work-info-cat">Off Duty</div><div class="work-info-title">THE MOVE</div></div></div>
     </div>
-    <div class="work-item col-4" data-cat="off-duty">
+    <div class="work-item col-4" data-cat="off-duty" data-vimeo="1199120879">
       <div class="work-thumb-ph" style="background:#12100a"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       <div class="work-overlay"><div><div class="work-info-cat">Off Duty · Brand Edit</div><div class="work-info-title">MYST</div></div></div>
     </div>
+
   </div>
 </section>
 
@@ -704,6 +705,7 @@ const modal=document.getElementById('modal'),modalFrame=document.getElementById(
 document.getElementById('modalClose').addEventListener('click',()=>{modal.classList.remove('open');modalFrame.src=''});
 modal.addEventListener('click',e=>{if(e.target===modal){modal.classList.remove('open');modalFrame.src=''}});
 document.querySelectorAll('.work-item[data-yt]').forEach(item=>{item.addEventListener('click',()=>{modalFrame.src=`https://www.youtube.com/embed/${item.dataset.yt}?autoplay=1`;modal.classList.add('open')})});
+document.querySelectorAll('.work-item[data-vimeo]').forEach(item=>{item.addEventListener('click',()=>{modalFrame.src=`https://player.vimeo.com/video/${item.dataset.vimeo}?autoplay=1`;modal.classList.add('open')})});
 document.querySelectorAll('.work-item[data-ig]').forEach(item=>{item.addEventListener('click',()=>window.open(item.dataset.ig,'_blank'))});
 
 // GALLERY
