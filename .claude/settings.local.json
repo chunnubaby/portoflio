@@ -3,7 +3,10 @@
     "allow": [
       "Bash(gh auth *)",
       "PowerShell(gh auth status)",
-      "PowerShell(Get-Command gh -ErrorAction SilentlyContinue; \\(Get-Item \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" -ErrorAction SilentlyContinue\\).FullName; \\(Get-Item \"$env:LOCALAPPDATA\\\\Programs\\\\GitHub CLI\\\\gh.exe\" -ErrorAction SilentlyContinue\\).FullName)"
+      "PowerShell(Get-Command gh -ErrorAction SilentlyContinue; \\(Get-Item \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" -ErrorAction SilentlyContinue\\).FullName; \\(Get-Item \"$env:LOCALAPPDATA\\\\Programs\\\\GitHub CLI\\\\gh.exe\" -ErrorAction SilentlyContinue\\).FullName)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "PowerShell(cd \"C:\\\\Users\\\\coolf\\\\OneDrive\\\\Documents\\\\claude\\\\portoflio\"; echo '{\"tool_name\":\"Edit\",\"tool_input\":{\"file_path\":\"index.html\"}}' | powershell -Command \"git add -A; if \\(git diff --cached --quiet\\) { exit 0 } else { git commit -m 'Auto-save'; git push }\" 2>&1)"
     ]
   }
 }
