@@ -6,7 +6,21 @@
       "PowerShell(Get-Command gh -ErrorAction SilentlyContinue; \\(Get-Item \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" -ErrorAction SilentlyContinue\\).FullName; \\(Get-Item \"$env:LOCALAPPDATA\\\\Programs\\\\GitHub CLI\\\\gh.exe\" -ErrorAction SilentlyContinue\\).FullName)",
       "Skill(update-config)",
       "Skill(update-config:*)",
-      "PowerShell(cd \"C:\\\\Users\\\\coolf\\\\OneDrive\\\\Documents\\\\claude\\\\portoflio\"; echo '{\"tool_name\":\"Edit\",\"tool_input\":{\"file_path\":\"index.html\"}}' | powershell -Command \"git add -A; if \\(git diff --cached --quiet\\) { exit 0 } else { git commit -m 'Auto-save'; git push }\" 2>&1)"
+      "PowerShell(cd \"C:\\\\Users\\\\coolf\\\\OneDrive\\\\Documents\\\\claude\\\\portoflio\"; echo '{\"tool_name\":\"Edit\",\"tool_input\":{\"file_path\":\"index.html\"}}' | powershell -Command \"git add -A; if \\(git diff --cached --quiet\\) { exit 0 } else { git commit -m 'Auto-save'; git push }\" 2>&1)",
+      "WebFetch(domain:github.com)",
+      "Bash(cd /c/Users/coolf/OneDrive/Documents/claude/noop && echo \"===PACKAGES===\" && ls Packages && echo \"===STRAND===\" && ls Strand && echo \"===project.yml===\" && cat project.yml)",
+      "Bash(swift --version)",
+      "Bash(where swift *)",
+      "Bash(where xcodegen *)",
+      "Bash(git --version)",
+      "Bash(dotnet --version)",
+      "Bash(rustc --version)",
+      "Bash(cargo --version)",
+      "PowerShell(winget install --id Microsoft.DotNet.SDK.8 --scope user --accept-source-agreements --accept-package-agreements --silent 2>&1)",
+      "Bash(sed -n '320,370p' Strand/BLE/BLEManager.swift)",
+      "Bash(sed -n '955,995p' Strand/BLE/BLEManager.swift)",
+      "Bash(mkdir -p windows/Noop.Core/Resources)",
+      "Bash(cp Packages/WhoopProtocol/Sources/WhoopProtocol/Resources/whoop_protocol.json windows/Noop.Core/Resources/whoop_protocol.json)"
     ]
   },
   "hooks": {
@@ -16,8 +30,8 @@
         "hooks": [
           {
             "type": "command",
-            "shell": "powershell",
             "command": "cd 'C:\\Users\\coolf\\OneDrive\\Documents\\claude\\portoflio'; git add -A; if (-not (git diff --cached --quiet)) { git commit -m 'Auto-save'; git push }",
+            "shell": "powershell",
             "statusMessage": "Pushing to GitHub...",
             "async": true
           }
