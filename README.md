@@ -13,6 +13,7 @@ Personal portfolio site for filmmaker, actor, and cinematographer Farhan Naushad
 ```
 .
 ├── index.html       # The entire site (headshot images embedded as base64)
+├── ridescan/        # RideScan — rideshare price comparison PWA (see its README)
 ├── images/          # Original headshot files (backup)
 ├── robots.txt       # Search engine directives
 └── sitemap.xml      # Sitemap for SEO
