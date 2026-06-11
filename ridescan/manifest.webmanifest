@@ -1,0 +1,15 @@
+{
+  "name": "RideScan — compare every ride app",
+  "short_name": "RideScan",
+  "description": "One search, every rideshare price in your city — Uber, Lyft, Hopp, Uride and more, ranked best deal first.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0f1a",
+  "theme_color": "#0b0f1a",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
