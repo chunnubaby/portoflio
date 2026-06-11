@@ -20,7 +20,8 @@
       "Bash(sed -n '320,370p' Strand/BLE/BLEManager.swift)",
       "Bash(sed -n '955,995p' Strand/BLE/BLEManager.swift)",
       "Bash(mkdir -p windows/Noop.Core/Resources)",
-      "Bash(cp Packages/WhoopProtocol/Sources/WhoopProtocol/Resources/whoop_protocol.json windows/Noop.Core/Resources/whoop_protocol.json)"
+      "Bash(cp Packages/WhoopProtocol/Sources/WhoopProtocol/Resources/whoop_protocol.json windows/Noop.Core/Resources/whoop_protocol.json)",
+      "mcp__Claude_Preview__preview_start"
     ]
   },
   "hooks": {

@@ -55,9 +55,10 @@
 
   function featureToPlace(f) {
     const p = f.properties;
-    const parts = [p.name || p.street, p.housenumber, p.city || p.town || p.village, p.state, p.country]
+    const street = [p.housenumber, p.street].filter(Boolean).join(" ");
+    const main = p.name || street || p.city || "Location";
+    const parts = [main, street !== main ? street : null, p.city || p.town || p.village, p.state, p.country]
       .filter(Boolean);
-    const main = [p.name || [p.housenumber, p.street].filter(Boolean).join(" ")].filter(Boolean).join("");
     return {
       lat: f.geometry.coordinates[1],
       lng: f.geometry.coordinates[0],
