@@ -347,7 +347,7 @@
           ${escapeHtml(q.provider.name[0])}
         </span>
         <span class="ride-info">
-          <span class="ride-name">${escapeHtml(q.provider.name)} ${q.svc.name !== q.provider.name ? escapeHtml(q.svc.name) : ""}
+          <span class="ride-name">${escapeHtml(q.svc.name.toLowerCase().includes(q.provider.name.toLowerCase()) ? q.svc.name : `${q.provider.name} ${q.svc.name}`)}
             ${q.svc.sub ? `<span>· ${escapeHtml(q.svc.sub)}</span>` : ""}
           </span>
           <span class="ride-meta">
