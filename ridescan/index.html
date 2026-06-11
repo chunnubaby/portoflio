@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>RideScan — Compare every ride app, one search</title>
+  <meta name="description" content="Compare Uber, Lyft, Hopp, Uride and every rideshare app in your city. One search, every price, best deal first — like Skyscanner for rides.">
+  <meta name="theme-color" content="#0b0f1a">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">R</span>
+      <span class="brand-name">Ride<em>Scan</em></span>
+    </div>
+    <span class="brand-tag">every ride app · one search</span>
+  </header>
+
+  <main>
+    <!-- ============ SEARCH ============ -->
+    <section class="search-card" id="searchCard">
+      <h1>Where to?</h1>
+      <p class="sub">We scan every ride service available in your area and rank the deals — like Skyscanner, but for rides.</p>
+
+      <div class="field-group">
+        <div class="field" id="pickupField">
+          <span class="dot dot-green"></span>
+          <input type="text" id="pickupInput" placeholder="Pickup location" autocomplete="off" enterkeyhint="next">
+          <button class="locate-btn" id="locateBtn" title="Use my location" aria-label="Use my current location">◎</button>
+          <div class="suggestions" id="pickupSuggestions"></div>
+        </div>
+        <div class="connector"></div>
+        <div class="field" id="dropoffField">
+          <span class="dot dot-red"></span>
+          <input type="text" id="dropoffInput" placeholder="Where are you going?" autocomplete="off" enterkeyhint="search">
+          <div class="suggestions" id="dropoffSuggestions"></div>
+        </div>
+      </div>
+
+      <button class="scan-btn" id="scanBtn" disabled>
+        <span class="scan-btn-label">Scan all ride apps</span>
+      </button>
+      <p class="error-msg" id="errorMsg" hidden></p>
+    </section>
+
+    <!-- ============ RESULTS ============ -->
+    <section class="results" id="results" hidden>
+      <div class="trip-summary" id="tripSummary"></div>
+      <div id="map"></div>
+
+      <div class="sort-row">
+        <span class="results-count" id="resultsCount"></span>
+        <div class="sort-toggle" id="sortToggle">
+          <button data-sort="price" class="active">Cheapest</button>
+          <button data-sort="wait">Fastest pickup</button>
+          <button data-sort="value">Best value</button>
+        </div>
+      </div>
+
+      <div class="result-list" id="resultList"></div>
+
+      <p class="disclaimer">
+        Prices are <strong>estimates</strong> built from each company's published rates, your real route
+        and current demand patterns — final price is confirmed in the provider's app.
+        Tapping a ride opens that exact trip in the app for the live quote.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>RideScan · estimates only · routing © OpenStreetMap contributors</span>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="rates.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
