@@ -73,14 +73,17 @@
 
   function wireAutocomplete(input, boxId, key) {
     const box = $(boxId);
+    let seq = 0;
 
     const run = debounce(async () => {
       const q = input.value.trim();
       state[key] = null;
       updateScanBtn();
       if (q.length < 3) { box.classList.remove("open"); return; }
+      const mySeq = ++seq;
       try {
         const places = await fetchSuggestions(q);
+        if (mySeq !== seq) return; // a newer query is in flight — drop this stale response
         box.innerHTML = "";
         places.forEach((pl) => {
           const b = document.createElement("button");
