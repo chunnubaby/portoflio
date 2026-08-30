@@ -718,10 +718,12 @@ document.querySelectorAll('.about-tab').forEach(tab=>{
 document.querySelectorAll('.work-item[data-yt]').forEach(item=>{
   const id=item.dataset.yt;
   const thumb=item.querySelector('.work-thumb-ph');
-  const max=new Image();
-  max.onload=()=>{thumb.style.backgroundImage=`url(${max.src})`};
-  max.onerror=()=>{thumb.style.backgroundImage=`url(https://img.youtube.com/vi/${id}/hqdefault.jpg)`};
-  max.src=`https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+  const img=document.createElement('img');
+  img.className='yt-thumb';
+  img.src=`https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+  img.onerror=()=>{img.src=`https://img.youtube.com/vi/${id}/hqdefault.jpg`};
+  img.alt='';
+  thumb.prepend(img);
 });
 
 // VIDEO MODAL
