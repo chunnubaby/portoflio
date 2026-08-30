@@ -21,7 +21,9 @@
       "Bash(sed -n '955,995p' Strand/BLE/BLEManager.swift)",
       "Bash(mkdir -p windows/Noop.Core/Resources)",
       "Bash(cp Packages/WhoopProtocol/Sources/WhoopProtocol/Resources/whoop_protocol.json windows/Noop.Core/Resources/whoop_protocol.json)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "PowerShell(git ls-tree --name-only HEAD ridescan/)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri 'https://farhannaushad.com/ridescan/' -UseBasicParsing -TimeoutSec 20; \"Status: $\\($r.StatusCode\\)\"; if \\($r.Content -match 'RideScan'\\) { 'RideScan content confirmed live' } else { 'Page loaded but RideScan content not found' } } catch { \"Request failed: $\\($_.Exception.Message\\)\" })"
     ]
   },
   "hooks": {
