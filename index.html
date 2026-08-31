@@ -766,6 +766,13 @@ document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===d
 document.querySelectorAll('.work-item').forEach((el,i)=>el.style.transitionDelay=(i*0.04)+'s');
 document.querySelectorAll('.service-card').forEach((el,i)=>el.style.transitionDelay=(i*0.08)+'s');
 
+// SCROLL TO CONTACT
+function scrollToContact(){
+  var el=document.getElementById('contact');
+  var navH=document.getElementById('nav').offsetHeight||70;
+  window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-navH,behavior:'smooth'});
+}
+
 // FORM
 function handleSubmit(){const m=document.getElementById('form-msg');m.style.display='block';setTimeout(()=>m.style.display='none',4000)}
 
