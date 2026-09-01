@@ -674,6 +674,51 @@ document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.08});
 document.querySelectorAll('.reveal,.work-item,.stat-box,.service-card').forEach(el=>obs.observe(el));
 
+// WORK GRID LAYOUT ENGINE
+// Assigns sz-small / sz-medium / sz-large / sz-hero classes automatically.
+// To add a new video: just add the HTML tile with data-cat and data-yt — no manual spans needed.
+// data-size="large"  → 2/3-wide featured tile (triggers a large+small+small group)
+// data-size="hero"   → full-width 16:9 cinematic tile (stands alone on its row)
+// no data-size       → auto-assigned medium or small by the cycling pattern
+function assignGridSizes(items){
+  const SZ=['sz-small','sz-medium','sz-large','sz-hero'];
+  items.forEach(el=>el.classList.remove(...SZ));
+  // Cycling patterns — each fills exactly 12 grid columns:
+  //   [medium, medium]         = 6+6 = 12 cols
+  //   [small, small, small]    = 4+4+4 = 12 cols
+  const CYCLE=[['sz-medium','sz-medium'],['sz-small','sz-small','sz-small']];
+  let ci=0,i=0;
+  while(i<items.length){
+    const rem=items.length-i;
+    const hint=items[i].dataset.size;
+    if(hint==='hero'){items[i].classList.add('sz-hero');i++;continue;}
+    if(hint==='large'){
+      items[i].classList.add('sz-large');
+      if(i+1<items.length)items[i+1].classList.add('sz-small');
+      if(i+2<items.length)items[i+2].classList.add('sz-small');
+      i+=Math.min(3,rem);continue;
+    }
+    if(rem===1){items[i].classList.add('sz-hero');i++;continue;}
+    if(rem===2){items[i].classList.add('sz-medium');items[i+1].classList.add('sz-medium');i+=2;continue;}
+    const pat=CYCLE[ci%CYCLE.length];
+    // Safety: break pattern early if a hinted tile falls inside it
+    let safe=rem>=pat.length;
+    if(safe){for(let j=1;j<pat.length;j++){const h=items[i+j].dataset.size;if(h==='large'||h==='hero'){safe=false;break;}}}
+    if(safe){pat.forEach((sz,j)=>items[i+j].classList.add(sz));i+=pat.length;ci++;}
+    else{items[i].classList.add('sz-medium');i++;}
+  }
+}
+function layoutWorkGrid(f){
+  const all=Array.from(document.querySelectorAll('#workGrid .work-item'));
+  if(f==='all'){
+    ['short-film','cinematic','event','off-duty'].forEach(cat=>
+      assignGridSizes(all.filter(el=>el.dataset.cat===cat))
+    );
+  }else{
+    assignGridSizes(all.filter(el=>el.dataset.cat===f));
+  }
+}
+
 // WORK FILTER
 // MOBILE LIMIT
 let __showAllMobile = {};
