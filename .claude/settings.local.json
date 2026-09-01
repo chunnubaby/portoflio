@@ -24,7 +24,15 @@
       "mcp__Claude_Preview__preview_start",
       "PowerShell(git ls-tree --name-only HEAD ridescan/)",
       "PowerShell(try { $r = Invoke-WebRequest -Uri 'https://farhannaushad.com/ridescan/' -UseBasicParsing -TimeoutSec 20; \"Status: $\\($r.StatusCode\\)\"; if \\($r.Content -match 'RideScan'\\) { 'RideScan content confirmed live' } else { 'Page loaded but RideScan content not found' } } catch { \"Request failed: $\\($_.Exception.Message\\)\" })",
-      "mcp__claude-in-chrome__navigate"
+      "mcp__claude-in-chrome__navigate",
+      "PowerShell(\\(Get-Item \"C:\\\\Users\\\\coolf\\\\Desktop\\\\Capcut Files\\\\BAKCGROUBND.mp4\"\\).Length / 1MB)",
+      "PowerShell(ffmpeg -version 2>&1)",
+      "PowerShell(\\(Get-Item \"C:\\\\Users\\\\coolf\\\\Desktop\\\\Capcut Files\\\\0831.mp4\"\\).Length / 1MB)",
+      "PowerShell(winget install Gyan.FFmpeg --silent 2>&1)",
+      "Bash(ffmpeg -i \"C:/Users/coolf/Desktop/Capcut Files/0831.mp4\" -vf \"scale=1280:-2\" -c:v libx264 -crf 28 -preset fast -an \"C:/Users/coolf/OneDrive/Documents/claude/portoflio/bg.mp4\" -y)",
+      "PowerShell($env:PATH = $env:PATH + \";C:\\\\Users\\\\coolf\\\\AppData\\\\Local\\\\Microsoft\\\\WinGet\\\\Links\"; ffmpeg -i \"C:\\\\Users\\\\coolf\\\\Desktop\\\\Capcut Files\\\\0831.mp4\" -vf \"scale=1280:-2\" -c:v libx264 -crf 28 -preset fast -an \"C:\\\\Users\\\\coolf\\\\OneDrive\\\\Documents\\\\claude\\\\portoflio\\\\bg.mp4\" -y 2>&1 | Select-Object -Last 8)",
+      "PowerShell(& \"C:\\\\Users\\\\coolf\\\\AppData\\\\Local\\\\Microsoft\\\\WinGet\\\\Packages\\\\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\\\\ffmpeg-9.0.1-full_build\\\\bin\\\\ffmpeg.exe\" -i \"C:\\\\Users\\\\coolf\\\\Desktop\\\\Capcut Files\\\\0831.mp4\" -vf \"scale=1280:-2\" -c:v libx264 -crf 28 -preset fast -an \"C:\\\\Users\\\\coolf\\\\OneDrive\\\\Documents\\\\claude\\\\portoflio\\\\bg.mp4\" -y 2>&1)",
+      "PowerShell(\\(Get-Item \"C:\\\\Users\\\\coolf\\\\OneDrive\\\\Documents\\\\claude\\\\portoflio\\\\bg.mp4\"\\).Length / 1MB)"
     ]
   },
   "hooks": {
