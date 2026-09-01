@@ -744,9 +744,11 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
     btn.classList.add('active');
     const f=btn.dataset.filter;
     document.querySelectorAll('.work-item').forEach(item=>{item.style.display=(f==='all'||item.dataset.cat===f)?'':'none'});
+    layoutWorkGrid(f);
     applyMobileLimit();
   });
 });
+layoutWorkGrid('all');
 
 // Show more handler — capture phase so it intercepts before video/IG handlers
 document.querySelectorAll('.work-item').forEach(item=>{
