@@ -568,23 +568,24 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
     </div>
   </div>
   <div class="contact-form reveal">
-    <div class="form-group"><label>Your Name</label><input type="text" placeholder="Your name"></div>
-    <div class="form-group"><label>Email Address</label><input type="email" placeholder="your@email.com"></div>
-    <div class="form-group"><label>Project Type</label>
-      <select>
+    <div class="form-group"><label for="fn-name">Your Name</label><input id="fn-name" name="name" type="text" placeholder="Your name" required></div>
+    <div class="form-group"><label for="fn-email">Email Address</label><input id="fn-email" name="email" type="email" placeholder="your@email.com" required></div>
+    <div class="form-group"><label for="fn-service">Project Type</label>
+      <select id="fn-service" name="service">
         <option value="">Select a service</option>
         <option>Event Videography</option>
-        <option>Wedding Film</option>
+        <option>Wedding Films</option>
         <option>Short Film Direction</option>
-        <option>Cinematography / DOP</option>
+        <option>Cinematography &amp; DOP</option>
         <option>Social Media Content</option>
         <option>Video Editing</option>
         <option>Other</option>
       </select>
     </div>
-    <div class="form-group"><label>Tell me about your project</label><textarea placeholder="Date, location, vision, budget, whatever you have."></textarea></div>
-    <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
-    <p id="form-msg" style="font-size:13px;color:var(--accent);margin-top:8px;display:none">Message sent! I'll be in touch shortly.</p>
+    <div class="form-group"><label for="fn-message">Tell me about your project</label><textarea id="fn-message" name="message" placeholder="Date, location, vision, budget, whatever you have." required></textarea></div>
+    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+    <button class="submit-btn" id="fn-submit" onclick="handleSubmit(event)">Send Message →</button>
+    <p id="form-msg" style="font-size:13px;color:var(--accent);margin-top:8px;display:none"></p>
   </div>
 </section>
 
