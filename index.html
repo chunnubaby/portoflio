@@ -774,8 +774,81 @@ function scrollToContact(){
   window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-navH,behavior:'smooth'});
 }
 
+// SELECT SERVICE + SCROLL
+function selectService(service){
+  scrollToContact();
+  setTimeout(function(){
+    var sel=document.getElementById('fn-service');
+    if(!sel)return;
+    for(var i=0;i<sel.options.length;i++){
+      if(sel.options[i].text===service){sel.selectedIndex=i;break;}
+    }
+  },600);
+}
+
 // FORM
-function handleSubmit(){const m=document.getElementById('form-msg');m.style.display='block';setTimeout(()=>m.style.display='none',4000)}
+function handleSubmit(e){
+  e.preventDefault();
+  var name=document.getElementById('fn-name').value.trim();
+  var email=document.getElementById('fn-email').value.trim();
+  var service=document.getElementById('fn-service').value;
+  var message=document.getElementById('fn-message').value.trim();
+  var msg=document.getElementById('form-msg');
+  var btn=document.getElementById('fn-submit');
+
+  // Basic validation
+  if(!name||!email||!message){
+    msg.style.color='rgba(200,169,110,0.7)';
+    msg.textContent='Please fill in all required fields.';
+    msg.style.display='block';
+    return;
+  }
+  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRe.test(email)){
+    msg.style.color='rgba(200,169,110,0.7)';
+    msg.textContent='Please enter a valid email address.';
+    msg.style.display='block';
+    return;
+  }
+
+  // Submit
+  btn.disabled=true;
+  btn.textContent='Sending...';
+  msg.style.display='none';
+
+  var data=new FormData();
+  data.append('name',name);
+  data.append('email',email);
+  data.append('service',service||'Not specified');
+  data.append('message',message);
+  data.append('_replyto',email);
+  data.append('_subject','New Website Enquiry — '+(service||'General'));
+
+  fetch('https://formspree.io/f/YOUR_FORMSPREE_ID',{method:'POST',body:data,headers:{Accept:'application/json'}})
+    .then(function(r){return r.json().then(function(d){return{ok:r.ok,data:d}});})
+    .then(function(res){
+      if(res.ok){
+        msg.style.color='var(--accent)';
+        msg.textContent="Message sent. I'll be in touch shortly.";
+        msg.style.display='block';
+        document.getElementById('fn-name').value='';
+        document.getElementById('fn-email').value='';
+        document.getElementById('fn-service').selectedIndex=0;
+        document.getElementById('fn-message').value='';
+      } else {
+        throw new Error('failed');
+      }
+    })
+    .catch(function(){
+      msg.style.color='rgba(200,169,110,0.7)';
+      msg.textContent='Something went wrong. Please try again.';
+      msg.style.display='block';
+    })
+    .finally(function(){
+      btn.disabled=false;
+      btn.textContent='Send Message →';
+    });
+}
 
 // ESC to close any modal
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){modal.classList.remove('open');modalFrame.src='';closeGallery();closeShowreel();closeLightbox()}});
