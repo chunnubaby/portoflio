@@ -804,6 +804,14 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
 });
 layoutWorkGrid('all');
 
+// Stills lightbox
+document.querySelectorAll('.work-item[data-cat="stills"]').forEach(item=>{
+  item.addEventListener('click',()=>{
+    const img=item.querySelector('.work-thumb-ph img');
+    if(img){document.getElementById('lightboxImg').src=img.src;document.getElementById('lightbox').classList.add('open');}
+  });
+});
+
 // Show more handler — capture phase so it intercepts before video/IG handlers
 document.querySelectorAll('.work-item').forEach(item=>{
   item.addEventListener('click',function(e){
