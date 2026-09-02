@@ -764,8 +764,11 @@ function assignGridSizes(items){
 }
 function layoutWorkGrid(f){
   const all=Array.from(document.querySelectorAll('#workGrid .work-item'));
-  if(f==='all'){
-    ['short-film','cinematic','event','off-duty','stills'].forEach(cat=>
+  if(f==='stills'){
+    const SZ=['sz-small','sz-medium','sz-large','sz-hero'];
+    all.filter(el=>el.dataset.cat==='stills').forEach(el=>{el.classList.remove(...SZ);el.classList.add('sz-small');});
+  }else if(f==='all'){
+    ['short-film','cinematic','event','off-duty'].forEach(cat=>
       assignGridSizes(all.filter(el=>el.dataset.cat===cat))
     );
   }else{
