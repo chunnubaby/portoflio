@@ -797,7 +797,7 @@ document.querySelectorAll('.filter-btn').forEach(btn=>{
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     const f=btn.dataset.filter;
-    document.querySelectorAll('.work-item').forEach(item=>{item.style.display=(f==='all'||item.dataset.cat===f)?'':'none'});
+    document.querySelectorAll('.work-item').forEach(item=>{item.style.display=(f==='all'?(item.dataset.cat!=='stills'):item.dataset.cat===f)?'':'none'});
     layoutWorkGrid(f);
     applyMobileLimit();
   });
