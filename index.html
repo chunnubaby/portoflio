@@ -219,7 +219,11 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
 .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:1002;align-items:center;justify-content:center}
 .lightbox.open{display:flex}
 .lightbox-close{position:absolute;top:24px;right:32px;background:none;border:none;color:var(--muted);font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif}
-.lightbox img{max-height:90vh;max-width:90vw;object-fit:contain}
+.lightbox img{max-height:90vh;max-width:90vw;object-fit:contain;pointer-events:none}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,0.5);font-size:22px;padding:16px 10px;cursor:pointer;transition:color 0.2s;z-index:2;line-height:1}
+.lightbox-nav:hover{color:#fff}
+.lightbox-prev{left:4px}
+.lightbox-next{right:4px}
 
 .reveal{opacity:0;transform:translateY(36px);transition:opacity 0.7s ease,transform 0.7s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
