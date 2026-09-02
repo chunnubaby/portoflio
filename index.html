@@ -755,6 +755,13 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
 // CURSOR
 const cursor=document.getElementById('cursor');
 document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX-5+'px';cursor.style.top=e.clientY-5+'px'});
+document.addEventListener('mousedown',e=>{
+  if(e.button!==1)return;
+  document.documentElement.style.setProperty('cursor','auto','important');
+  cursor.style.display='none';
+  const restore=()=>{document.documentElement.style.removeProperty('cursor');cursor.style.display='';document.removeEventListener('click',restore);};
+  document.addEventListener('click',restore);
+});
 
 // NAV
 const nav=document.getElementById('nav');
