@@ -776,6 +776,26 @@ document.addEventListener('mousedown',e=>{
 // NAV
 const nav=document.getElementById('nav');
 window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
+
+// Mobile: show overlay on whichever work item is closest to screen center
+function updateMobileCenter(){
+  if(window.innerWidth>900)return;
+  const items=Array.from(document.querySelectorAll('#workGrid .work-item')).filter(el=>el.style.display!=='none'&&!el.classList.contains('show-more'));
+  const mid=window.innerHeight/2;
+  let best=null,bestDist=Infinity;
+  items.forEach(el=>{
+    const r=el.getBoundingClientRect();
+    const dist=Math.abs(r.top+r.height/2-mid);
+    if(dist<bestDist){bestDist=dist;best=el;}
+  });
+  items.forEach(el=>el.classList.remove('mobile-center'));
+  if(best)best.classList.add('mobile-center');
+}
+window.addEventListener('scroll',updateMobileCenter,{passive:true});
+window.addEventListener('resize',updateMobileCenter,{passive:true});
+// re-run when filter changes
+document.querySelectorAll('.filter-btn').forEach(btn=>btn.addEventListener('click',()=>setTimeout(updateMobileCenter,50)));
+updateMobileCenter();
 document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('mobileMenu').classList.add('open'));
 document.getElementById('mobileClose').addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
 document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
