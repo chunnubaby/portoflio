@@ -765,7 +765,7 @@ function assignGridSizes(items){
 function layoutWorkGrid(f){
   const all=Array.from(document.querySelectorAll('#workGrid .work-item'));
   if(f==='all'){
-    ['short-film','cinematic','event','off-duty'].forEach(cat=>
+    ['short-film','cinematic','event','off-duty','stills'].forEach(cat=>
       assignGridSizes(all.filter(el=>el.dataset.cat===cat))
     );
   }else{
