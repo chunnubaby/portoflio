@@ -939,16 +939,17 @@ window.addEventListener('load',applyMobileLimit);
 setTimeout(applyMobileLimit,100);
 
 // ABOUT TABS
+function switchAboutTab(p){
+  document.querySelectorAll('.about-tab').forEach(t=>t.classList.toggle('active',t.dataset.panel===p));
+  document.querySelectorAll('.about-panel').forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===p));
+  document.querySelectorAll('.stat-set').forEach(s=>s.classList.toggle('active',s.dataset.panel===p));
+  document.querySelectorAll('.stat-set.active .stat-box').forEach((box,i)=>{box.classList.remove('visible');setTimeout(()=>box.classList.add('visible'),i*100)});
+}
 document.querySelectorAll('.about-tab').forEach(tab=>{
-  tab.addEventListener('click',()=>{
-    const p=tab.dataset.panel;
-    document.querySelectorAll('.about-tab').forEach(t=>t.classList.remove('active'));
-    tab.classList.add('active');
-    document.querySelectorAll('.about-panel').forEach(panel=>panel.classList.toggle('active',panel.dataset.panel===p));
-    document.querySelectorAll('.stat-set').forEach(s=>s.classList.toggle('active',s.dataset.panel===p));
-    document.querySelectorAll('.stat-set.active .stat-box').forEach((box,i)=>{box.classList.remove('visible');setTimeout(()=>box.classList.add('visible'),i*100)});
-  });
+  tab.addEventListener('click',()=>switchAboutTab(tab.dataset.panel));
 });
+// Open actor tab directly via ?tab=actor in URL
+(function(){const p=new URLSearchParams(location.search).get('tab');if(p==='actor')switchAboutTab('actor');})();
 
 // YOUTUBE THUMBNAILS
 document.querySelectorAll('.work-item[data-yt]').forEach(item=>{
