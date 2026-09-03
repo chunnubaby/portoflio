@@ -948,8 +948,8 @@ function switchAboutTab(p){
 document.querySelectorAll('.about-tab').forEach(tab=>{
   tab.addEventListener('click',()=>switchAboutTab(tab.dataset.panel));
 });
-// Open actor tab directly via ?tab=actor in URL
-(function(){const p=new URLSearchParams(location.search).get('tab');if(p==='actor')switchAboutTab('actor');})();
+// Open tab via hash: #actor or #director
+(function(){const h=location.hash.replace('#','');if(h==='actor'||h==='director')switchAboutTab(h);})();
 
 // YOUTUBE THUMBNAILS
 document.querySelectorAll('.work-item[data-yt]').forEach(item=>{
