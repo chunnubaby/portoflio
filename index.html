@@ -303,7 +303,10 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-video-wrap">
-    <video autoplay muted loop playsinline preload="auto" style="position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;transform:translate(-50%,-50%);object-fit:cover">
+    <!-- Desktop: Vimeo (full quality stream) -->
+    <iframe class="hero-vimeo" src="https://player.vimeo.com/video/1223478351?background=1&autoplay=1&loop=1&muted=1" frameborder="0" allow="autoplay; fullscreen" style="position:absolute;top:50%;left:50%;width:177.78vh;height:56.25vw;min-width:100%;min-height:100%;transform:translate(-50%,-50%);pointer-events:none"></iframe>
+    <!-- Mobile: local compressed video -->
+    <video class="hero-video-local" autoplay muted loop playsinline preload="auto" style="position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;transform:translate(-50%,-50%);object-fit:cover;display:none">
       <source src="bg.mp4" type="video/mp4">
     </video>
   </div>
