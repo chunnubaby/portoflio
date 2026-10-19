@@ -517,7 +517,7 @@ footer{background:var(--off-black);border-top:1px solid var(--border);padding:34
       <div class="work-thumb-ph" style="background:#16080e"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       <div class="work-overlay"><div><div class="work-info-cat">Event</div><div class="work-info-title">DJ YSL</div></div></div>
     </div>
-    <div class="work-item" data-cat="event" data-yt="MJV1xGMy6cU" data-size="small">
+    <div class="work-item" data-cat="event" data-yt="MJV1xGMy6cU" data-size="small" data-thumb="thumbnails/band-bash.webp">
       <div class="work-thumb-ph" style="background:#0e0818"><div class="play-dot"><svg width="12" height="12" viewBox="0 0 24 24" fill="rgba(200,169,110,0.9)"><polygon points="5,3 19,12 5,21"/></svg></div></div>
       <div class="work-overlay"><div><div class="work-info-cat">Event · Queen's Vogue</div><div class="work-info-title">BAND BASH</div></div></div>
     </div>
@@ -958,8 +958,9 @@ document.querySelectorAll('.work-item[data-yt]').forEach(item=>{
   const thumb=item.querySelector('.work-thumb-ph');
   const img=document.createElement('img');
   img.className='yt-thumb';
-  img.src=`https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
-  img.onerror=()=>{img.src=`https://img.youtube.com/vi/${id}/hqdefault.jpg`};
+  const customThumb=item.dataset.thumb;
+  if(customThumb){img.src=customThumb;}
+  else{img.src=`https://img.youtube.com/vi/${id}/maxresdefault.jpg`;img.onerror=()=>{img.src=`https://img.youtube.com/vi/${id}/hqdefault.jpg`};}
   img.alt='';
   thumb.prepend(img);
 });
