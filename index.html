@@ -829,30 +829,20 @@ document.querySelectorAll('.reveal,.work-item,.stat-box,.service-card').forEach(
 // no data-size       → auto-assigned medium or small by the cycling pattern
 function assignGridSizes(items){
   const SZ=['sz-small','sz-medium','sz-large','sz-hero'];
-  items.forEach(el=>el.classList.remove(...SZ));
-  // Cycling patterns — each fills exactly 12 grid columns:
-  //   [medium, medium]         = 6+6 = 12 cols
-  //   [small, small, small]    = 4+4+4 = 12 cols
+  const MAP={small:'sz-small',medium:'sz-medium',large:'sz-large',hero:'sz-hero'};
   const CYCLE=[['sz-medium','sz-medium'],['sz-small','sz-small','sz-small']];
+  items.forEach(el=>el.classList.remove(...SZ));
+  // Tiles with explicit data-size get it applied directly; new tiles without fall through to auto-cycle
+  const auto=[];
+  items.forEach(el=>{const h=el.dataset.size;if(MAP[h])el.classList.add(MAP[h]);else auto.push(el);});
+  // Auto-cycle only for tiles without data-size — never reshuffles existing tiles
   let ci=0,i=0;
-  while(i<items.length){
-    const rem=items.length-i;
-    const hint=items[i].dataset.size;
-    if(hint==='hero'){items[i].classList.add('sz-hero');i++;continue;}
-    if(hint==='large'){
-      items[i].classList.add('sz-large');
-      if(i+1<items.length)items[i+1].classList.add('sz-small');
-      if(i+2<items.length)items[i+2].classList.add('sz-small');
-      i+=Math.min(3,rem);continue;
-    }
-    if(rem===1){items[i].classList.add('sz-hero');i++;continue;}
-    if(rem===2){items[i].classList.add('sz-medium');items[i+1].classList.add('sz-medium');i+=2;continue;}
+  while(i<auto.length){
+    const rem=auto.length-i;
+    if(rem<=2){auto.slice(i).forEach(el=>el.classList.add('sz-medium'));break;}
     const pat=CYCLE[ci%CYCLE.length];
-    // Safety: break pattern early if a hinted tile falls inside it
-    let safe=rem>=pat.length;
-    if(safe){for(let j=1;j<pat.length;j++){const h=items[i+j].dataset.size;if(h==='large'||h==='hero'){safe=false;break;}}}
-    if(safe){pat.forEach((sz,j)=>items[i+j].classList.add(sz));i+=pat.length;ci++;}
-    else{items[i].classList.add('sz-medium');i++;}
+    pat.forEach((sz,j)=>auto[i+j].classList.add(sz));
+    i+=pat.length;ci++;
   }
 }
 function layoutWorkGrid(f){
