@@ -436,6 +436,9 @@
     document.addEventListener('keydown', onKey);
     tickClock();
     setInterval(tickClock, 15000);
+    var place = window.NOCTURNE_LOCATION || '';
+    document.getElementById('location-name').textContent = place;
+    document.getElementById('location').classList.toggle('hidden', !place);
 
     loadApps(function (apps) {
       state.apps = apps;
