@@ -10,7 +10,8 @@ Write-Host "Serving $rootPath at http://localhost:$Port/"
 $mime = @{
   ".html"="text/html"; ".css"="text/css"; ".js"="application/javascript";
   ".json"="application/json"; ".webmanifest"="application/manifest+json";
-  ".png"="image/png"; ".jpg"="image/jpeg"; ".svg"="image/svg+xml"; ".ico"="image/x-icon"
+  ".png"="image/png"; ".jpg"="image/jpeg"; ".svg"="image/svg+xml"; ".ico"="image/x-icon";
+  ".woff"="font/woff"; ".woff2"="font/woff2"
 }
 
 while ($listener.IsListening) {
