@@ -196,9 +196,8 @@
     el.glow.style.background = 'radial-gradient(ellipse at center, ' + app.color + ' 0%, rgba(0,0,0,0) 65%)';
 
     // Keep the focused row comfortably on screen.
-    var rowEl = tile.parentNode;
-    var top = rowEl.offsetTop + (rowEl.parentNode.classList.contains('section') ? rowEl.parentNode.offsetTop : 0);
-    var shift = Math.max(0, top - 260);
+    // offsetTop is measured from #viewport (the nearest positioned ancestor) and ignores the transform.
+    var shift = Math.max(0, tile.parentNode.offsetTop - 260);
     el.rows.style.transform = 'translateY(' + (-shift) + 'px)';
   }
 
@@ -349,7 +348,7 @@
   function monogram(name) {
     var words = name.replace(/[^A-Za-z0-9 ]/g, '').split(' ').filter(Boolean);
     if (!words.length) return '?';
-    return words.length > 1 && words[0].length < 4 ? (words[0][0] + words[1][0]) : words[0].slice(0, words[0].length <= 3 ? 3 : 1);
+    return words.length > 1 ? words[0].charAt(0) + words[1].charAt(0) : words[0].charAt(0);
   }
 
   function tileBackground(color) {
