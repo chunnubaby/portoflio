@@ -348,7 +348,7 @@
         break;
       case KEY.RED: togglePin(); break;
       case KEY.GREEN: toggleMoveMode(); break;
-      case KEY.YELLOW: refresh(); break;
+      case KEY.YELLOW: cycleBackground(); break;
       case KEY.BLUE: cycleTheme(); break;
       case KEY.BACK: back(); break;
       default: return;
