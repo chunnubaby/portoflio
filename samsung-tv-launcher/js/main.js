@@ -199,6 +199,9 @@
     // offsetTop is measured from #viewport (the nearest positioned ancestor) and ignores the transform.
     var shift = Math.max(0, tile.parentNode.offsetTop - 260);
     el.rows.style.transform = 'translateY(' + (-shift) + 'px)';
+    // Long pinned rows slide sideways so the focused tile never leaves the screen.
+    var shiftX = Math.max(0, tile.offsetLeft + tile.offsetWidth - 1800);
+    tile.parentNode.style.transform = 'translateX(' + (-shiftX) + 'px)';
   }
 
   // ---------- actions ----------

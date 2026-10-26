@@ -129,6 +129,7 @@ html, body {
 .row {
   display: flex;
   margin-bottom: 30px;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .tile {
