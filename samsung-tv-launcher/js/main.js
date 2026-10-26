@@ -369,6 +369,9 @@
     // TVs already render at 1920x1080; this only matters in the browser preview.
     var scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
     el.stage.style.transform = 'scale(' + scale + ')';
+    // Centre it like a TV screen, letterboxed in black.
+    el.stage.style.left = Math.max(0, (window.innerWidth - 1920 * scale) / 2) + 'px';
+    el.stage.style.top = Math.max(0, (window.innerHeight - 1080 * scale) / 2) + 'px';
   }
 
   function registerRemoteKeys() {
