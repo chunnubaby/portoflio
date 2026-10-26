@@ -5,6 +5,13 @@
   var STORE_KEY = 'nocturne.v1';
   var GRID_COLS = 6;
   var THEMES = ['midnight', 'oled', 'aurora'];
+  // Built-in backgrounds; your own photos (backgrounds/backgrounds.js) are added after these.
+  var BUILTIN_BACKGROUNDS = [
+    { id: 'none', name: 'Theme colour' },
+    { id: 'aurora', name: 'Aurora (moving)' },
+    { id: 'nebula', name: 'Nebula' },
+    { id: 'dusk', name: 'Dusk' }
+  ];
   var KEY = {
     LEFT: 37, UP: 38, RIGHT: 39, DOWN: 40, ENTER: 13, BACK: 10009,
     RED: 403, GREEN: 404, YELLOW: 405, BLUE: 406
@@ -18,7 +25,8 @@
     apps: [],          // every launchable app, sorted by name
     pinned: [],        // app ids, in display order
     theme: 'midnight',
-    rows: [],          // [{ kind: 'pinned'|'grid', items: [app] }]
+    background: 'none',
+    rows: [],         // [{ kind: 'pinned'|'grid', items: [app] }]
     focus: { row: 0, col: 0 },
     moving: false
   };
@@ -26,6 +34,7 @@
   var el = {
     stage: document.getElementById('stage'),
     rows: document.getElementById('rows'),
+    bg: document.getElementById('bg'),
     glow: document.getElementById('glow'),
     clock: document.getElementById('clock'),
     date: document.getElementById('date'),
@@ -44,7 +53,7 @@
 
   function savePrefs() {
     try {
-      localStorage.setItem(STORE_KEY, JSON.stringify({ pinned: state.pinned, theme: state.theme }));
+      localStorage.setItem(STORE_KEY, JSON.stringify({ pinned: state.pinned, theme: state.theme, background: state.background }));
     } catch (e) { /* storage unavailable: settings just won't persist */ }
   }
 
@@ -271,6 +280,32 @@
     document.body.classList.add('theme-' + state.theme);
   }
 
+  function allBackgrounds() {
+    var photos = (window.NOCTURNE_PHOTOS || []).map(function (p) {
+      return { id: 'photo:' + p.file, name: p.name || p.file, file: p.file };
+    });
+    return BUILTIN_BACKGROUNDS.concat(photos);
+  }
+
+  function applyBackground(id) {
+    var list = allBackgrounds();
+    var bg = list[0];
+    for (var i = 0; i < list.length; i++) if (list[i].id === id) bg = list[i];
+    state.background = bg.id;
+    el.bg.className = bg.file ? 'photo' : 'bg-' + bg.id;
+    el.bg.style.backgroundImage = bg.file ? 'url("backgrounds/' + encodeURI(bg.file) + '")' : '';
+    return bg;
+  }
+
+  function cycleBackground() {
+    var list = allBackgrounds();
+    var idx = 0;
+    for (var i = 0; i < list.length; i++) if (list[i].id === state.background) idx = i;
+    var bg = applyBackground(list[(idx + 1) % list.length].id);
+    savePrefs();
+    toast('Background: ' + bg.name);
+  }
+
   function refocus(appId) {
     for (var r = 0; r < state.rows.length; r++) {
       for (var c = 0; c < state.rows[r].items.length; c++) {
@@ -289,6 +324,7 @@
     }
   }
 
+  // Re-reads the installed apps; runs whenever you come back to Nocturne, so new installs just appear.
   function refresh() {
     var current = focusedApp();
     loadApps(function (apps) {
@@ -296,7 +332,6 @@
       buildRows();
       refocus(current ? current.id : null);
       render();
-      toast(apps.length + ' apps');
     });
   }
 
