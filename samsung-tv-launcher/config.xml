@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://nocturne.local/launcher" version="1.0.0" viewmodes="maximized">
+    <tizen:application id="Noctrn0001.Nocturne" package="Noctrn0001" required_version="4.0"/>
+    <content src="index.html"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="icon.png"/>
+    <name>Nocturne</name>
+    <tizen:profile name="tv-samsung"/>
+
+    <!-- Only what the launcher needs: read the installed-app list, open apps, use the colour keys. -->
+    <!-- No network, camera, microphone or storage-outside-the-app privileges are requested. -->
+    <tizen:privilege name="http://tizen.org/privilege/application.info"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+
+    <tizen:setting screen-orientation="landscape" context-menu="disable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+</widget>
