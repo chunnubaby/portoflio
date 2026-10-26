@@ -5,6 +5,7 @@
    Photos are darkened automatically so the app tiles stay readable. */
 
 window.NOCTURNE_PHOTOS = [
+  { file: 'upside-down-city.jpg', name: 'Upside-down city' },
   { file: 'sample-night.jpg', name: 'Night sky (sample)' }
   // { file: 'my-photo.jpg', name: 'My photo' }
 ];
