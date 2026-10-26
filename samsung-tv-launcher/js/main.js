@@ -421,7 +421,11 @@
   function init() {
     var prefs = loadPrefs();
     applyTheme(prefs && prefs.theme);
+    applyBackground(prefs && prefs.background);
     registerRemoteKeys();
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden && state.apps.length) refresh();
+    });
     fitStage();
     window.addEventListener('resize', fitStage);
     document.addEventListener('keydown', onKey);

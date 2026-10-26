@@ -11,7 +11,7 @@ A sideloaded Tizen web app. It shows your installed apps as big, dark tiles. Pin
 | Arrows / OK | Move / open app |
 | 🔴 Red | Pin or unpin the highlighted app |
 | 🟢 Green | Reorder mode for pinned apps (← → to move, OK to save) |
-| 🟡 Yellow | Refresh the app list (after installing something new) |
+| 🟡 Yellow | Change background: Theme colour → Aurora (moving) → Nebula → Dusk → your photos |
 | 🔵 Blue | Switch theme: Midnight → OLED black → Aurora |
 | Back | Close Nocturne |
 
