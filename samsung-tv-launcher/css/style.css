@@ -73,7 +73,8 @@ html, body {
     linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.85) 100%),
     linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 60%);
 }
-#bg.photo ~ #glow { opacity: 0.12; }
+/* let the chosen background show through instead of the app-colour wash */
+#bg:not(.bg-none) ~ #glow { opacity: 0.14; }
 
 #bg.bg-nebula {
   background:
