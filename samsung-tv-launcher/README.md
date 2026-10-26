@@ -17,6 +17,16 @@ A sideloaded Tizen web app. It shows your installed apps as big, dark tiles. Pin
 
 If your remote has no colour buttons, press the **123 / ⋯** button to show them on screen.
 
+The app list refreshes on its own whenever you come back to Nocturne, so newly installed apps just show up.
+
+## Your own background photos
+
+1. Put JPG or PNG files in the `backgrounds` folder. Landscape 1920×1080 works best.
+2. Add a line for each one in `backgrounds/backgrounds.js`, for example `{ file: 'beach.jpg', name: 'Beach' }`.
+3. Reinstall Nocturne on the TV, then press **Yellow** until your photo shows.
+
+Photos are darkened automatically so the tiles stay readable. `sample-night.jpg` is only a demo, so delete its line if you don't want it.
+
 ## What it can't do (a Samsung limit, not a bug)
 
 - **Home** still opens Samsung's own home bar. Samsung doesn't let apps replace it. Workaround: move Nocturne to the first spot on the home bar so it's one click away.
