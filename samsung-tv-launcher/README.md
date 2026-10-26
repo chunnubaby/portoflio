@@ -19,6 +19,10 @@ If your remote has no colour buttons, press the **123 / ⋯** button to show the
 
 The app list refreshes on its own whenever you come back to Nocturne, so newly installed apps just show up.
 
+## Location
+
+The city under the date is set in `js/settings.js` (`NOCTURNE_LOCATION`). Change it, or set it to `''` to hide it, then reinstall.
+
 ## Your own background photos
 
 1. Put JPG or PNG files in the `backgrounds` folder. Landscape 1920×1080 works best.
