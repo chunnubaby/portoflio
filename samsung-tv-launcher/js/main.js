@@ -290,6 +290,7 @@
   function applyBackground(id) {
     var list = allBackgrounds();
     var bg = list[0];
+    if (!id) id = window.NOCTURNE_DEFAULT_BACKGROUND;
     for (var i = 0; i < list.length; i++) if (list[i].id === id) bg = list[i];
     state.background = bg.id;
     el.bg.className = bg.file ? 'photo' : 'bg-' + bg.id;

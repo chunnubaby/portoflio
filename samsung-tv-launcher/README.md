@@ -11,7 +11,7 @@ A sideloaded Tizen web app. It shows your installed apps as big, dark tiles. Pin
 | Arrows / OK | Move / open app |
 | 🔴 Red | Pin or unpin the highlighted app |
 | 🟢 Green | Reorder mode for pinned apps (← → to move, OK to save) |
-| 🟡 Yellow | Change background: Theme colour → Aurora (moving) → Nebula → Dusk → your photos |
+| 🟡 Yellow | Change background: Theme colour → Aurora (moving) → Nebula → Dusk → your photos (default: Upside-down city) |
 | 🔵 Blue | Switch theme: Midnight → OLED black → Aurora |
 | Back | Close Nocturne |
 
@@ -25,7 +25,7 @@ The app list refreshes on its own whenever you come back to Nocturne, so newly i
 2. Add a line for each one in `backgrounds/backgrounds.js`, for example `{ file: 'beach.jpg', name: 'Beach' }`.
 3. Reinstall Nocturne on the TV, then press **Yellow** until your photo shows.
 
-Photos are darkened automatically so the tiles stay readable. `sample-night.jpg` is only a demo, so delete its line if you don't want it.
+Photos are darkened slightly so the tiles stay readable. The default background is **Upside-down city**. To change it, edit `NOCTURNE_DEFAULT_BACKGROUND` in the same file.
 
 ## What it can't do (a Samsung limit, not a bug)
 
