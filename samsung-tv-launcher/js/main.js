@@ -289,9 +289,13 @@
 
   function applyBackground(id) {
     var list = allBackgrounds();
-    var bg = list[0];
-    if (!id) id = window.NOCTURNE_DEFAULT_BACKGROUND;
-    for (var i = 0; i < list.length; i++) if (list[i].id === id) bg = list[i];
+    // Saved choice first; if it's missing (e.g. a deleted photo) use the default, then plain theme colour.
+    var bg = null, fallback = list[0];
+    for (var i = 0; i < list.length; i++) {
+      if (list[i].id === id) bg = list[i];
+      if (list[i].id === window.NOCTURNE_DEFAULT_BACKGROUND) fallback = list[i];
+    }
+    bg = bg || fallback;
     state.background = bg.id;
     el.bg.className = bg.file ? 'photo' : 'bg-' + bg.id;
     el.bg.style.backgroundImage = bg.file ? 'url("backgrounds/' + encodeURI(bg.file) + '")' : '';
