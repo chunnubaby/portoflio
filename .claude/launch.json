@@ -12,6 +12,12 @@
       "runtimeExecutable": "powershell",
       "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ".claude/serve.ps1", "-Port", "8766", "-Root", "samsung-tv-launcher"],
       "port": 8766
+    },
+    {
+      "name": "portfolio",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ".claude/serve.ps1", "-Port", "8767", "-Root", "."],
+      "port": 8767
     }
   ]
 }
