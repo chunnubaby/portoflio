@@ -152,7 +152,7 @@ section{padding:120px 48px}
 
 /* SERVICES */
 .services{background:var(--dark)}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:2px}
 .service-card{background:var(--off-black);padding:44px 32px;border:1px solid var(--border);opacity:0;transform:translateY(30px);transition:all 0.5s ease;position:relative;overflow:hidden}
 .service-card::before{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width 0.4s}
 .service-card:hover::before{width:100%}
